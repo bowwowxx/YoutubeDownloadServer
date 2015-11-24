@@ -65,7 +65,7 @@ func VideoHandler(w http.ResponseWriter, r *http.Request) {
 		ur = listpath + kind
 	}
 
-	mp3_link := exec.Command("youtube-dl", ur)
+	mp3_link := exec.Command("youtube-dl", "-i", "-c", ur)
 	go pippCmd(w, mp3_link)
 	fmt.Fprintf(w, "Successfully....\n")
 }
@@ -99,7 +99,7 @@ func EncoMp3Handler(w http.ResponseWriter, r *http.Request) {
 	// 	return
 	// }
 
-	mp3_link := exec.Command("youtube-dl", "-f", "140", "-x", "--audio-format", "mp3", ur)
+	mp3_link := exec.Command("youtube-dl", "-f", "140", "-x", "--audio-format", "mp3", "-i", "-c", ur)
 	go pippCmd(w, mp3_link)
 	fmt.Fprintf(w, "Successfully....\n")
 }
